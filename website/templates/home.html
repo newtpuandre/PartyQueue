@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>PartyQueue</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <h1 class="mt-5"><a href ="/" >PartyQueue v0</a> <img src="static/img/kkool.gif" width="40"/><a href="/queue/state">
+        <a href="/queue/"><button class="btn" style="float:right;">View Queue</button></a></h1>
+      <form>
+        <p class="lead"><input type="text" class="form-control-plaintext" placeholder="Search..." id="search" name="search"></p>
+        <p><button class="btn" type="submit">Search</button></p> 
+      </form>
+      <p>          
+        {{range .SearchResults}}
+        <div class="media border p-3">
+          <img src="{{.AlbumArt}}" style="width:120px;margin-right:20px;">
+          <div class="media-body">
+            <h4>{{.Songname}} - {{.Artist}}</h4>
+            <p>Playtime : {{.SongLength}} Seconds</p>
+            <a href="/queue/add/{{.Songid}}"><button class="btn" style="float:right;">Add to Queue</button></a>
+          </div>
+        </div>
+        {{end}}
+      </p>
+      {{if .IsLoggedIn}}
+      You are logged in. To change account click <a href="http://localhost/login">here</a>.
+      {{else}}
+      <a href="http://localhost/login">Login</a>
+      {{end}}
+    </main>
+  </body>
+</html>

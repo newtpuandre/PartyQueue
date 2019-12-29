@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>PartyQueue</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/sticky-footer.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <h1 class="mt-5"><a href ="/" >PartyQueue v0</a> <img src="static/img/kkool.gif" width="40"/><a href="/"><button class="btn" style="float:right;">View Search</button></a></h1>
+      <h3>Currently Playing:</h3>
+      <p>
+        {{if .CurrPlayImage}}
+        <div class="media border p-3">
+          <img src="{{.CurrPlayImage}}" style="width:120px;margin-right:20px;">
+          <div class="media-body">
+            <h4>{{.CurrPlay.Item.Name}} - {{.CurrPlayArtist}}</h4>
+            <a href="/queue/skip/"><button class="btn" style="float:right;">Skip Song</button></a>
+          </div>
+        </div>
+        {{else}}
+        Nothing is currently playing... 😢
+        {{end}}
+      </p>
+      <h3>Next up:</h3>
+      <p>
+
+        {{if (lt .Size 0)}}
+        Looks like the queue is empty... 😢
+        {{end}} 
+
+        {{$size := .Size}}
+        {{range $i, $e := .Songs }}
+        <div class="media border p-3">
+          <img src="{{.AlbumArt}}" style="width:120px;margin-right:20px;">
+          <div class="media-body">
+            <h4>{{.Songname}} - {{.Artist}}</h4>
+            <p>Playtime : {{.SongLength}} Seconds</p>
+            {{if gt $i 0}}
+            <a href="/queue/up/{{.Songid}}"><button class="btn" >Up</button></a>
+            {{end}}
+            {{if lt $i $size}}
+            <a href="/queue/down/{{.Songid}}"><button class="btn" >Down</button></a>
+            {{end}}
+            <a href="/queue/remove/{{.Songid}}"><button class="btn" style="float:right;">Remove from queue</button></a>
+          </div>
+        </div>
+        {{end}}
+      </p>
+    </main>
+
+  </body>
+</html>
