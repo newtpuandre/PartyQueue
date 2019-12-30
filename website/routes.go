@@ -201,7 +201,7 @@ func showqueue(w http.ResponseWriter, r *http.Request) {
 	}
 
 	queueData.Size = len(queueData.Songs) - 1
-	if finalToken.Token != "" && queueData.CurrPlay.IsPlaying == true {
+	if finalToken.Token != "" && len(currPlaying.Item.Album.Images) > 0 {
 		queueData.CurrPlay = currPlaying
 		queueData.CurrPlayImage = currPlaying.Item.Album.Images[0].URL
 		queueData.CurrPlayArtist = currPlaying.Item.Artists[0].Name
