@@ -20,6 +20,8 @@
 
   <body>
 
+    {{$size := .Size}}
+    
     <!-- Begin page content -->
     <main role="main" class="container">
       <h1 class="mt-5"><a href ="/" >PartyQueue v0</a> <img src="static/img/kkool.gif" width="40"/><a href="/"><button class="btn" style="float:right;">View Search</button></a></h1>
@@ -30,7 +32,9 @@
           <img src="{{.CurrPlayImage}}" style="width:120px;margin-right:20px;">
           <div class="media-body">
             <h4>{{.CurrPlay.Item.Name}} - {{.CurrPlayArtist}}</h4>
+            {{if (lt .Size 0)}}
             <a href="/queue/skip/"><button class="btn" style="float:right;">Skip Song</button></a>
+            {{end}} 
           </div>
         </div>
         {{else}}
@@ -44,7 +48,6 @@
         Looks like the queue is empty... 😢
         {{end}} 
 
-        {{$size := .Size}}
         {{range $i, $e := .Songs }}
         <div class="media border p-3">
           <img src="{{.AlbumArt}}" style="width:120px;margin-right:20px;">
