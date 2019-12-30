@@ -32,7 +32,8 @@
           <img src="{{.CurrPlayImage}}" style="width:120px;margin-right:20px;">
           <div class="media-body">
             <h4>{{.CurrPlay.Item.Name}} - {{.CurrPlayArtist}}</h4>
-            {{if (lt .Size 0)}}
+            {{if (gt .Size -1)}}
+            
             <a href="/queue/skip/"><button class="btn" style="float:right;">Skip Song</button></a>
             {{end}} 
           </div>
