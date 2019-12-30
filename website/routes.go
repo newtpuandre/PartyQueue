@@ -149,7 +149,7 @@ func queueRemove(w http.ResponseWriter, r *http.Request) {
 }
 
 func queueSkip(w http.ResponseWriter, r *http.Request) {
-	if currPlaying.IsPlaying == true {
+	if len(queue) > 0 && currPlaying.IsPlaying == true {
 		nextSong()
 	}
 	http.Redirect(w, r, r.Header.Get("Referer"), http.StatusSeeOther)
