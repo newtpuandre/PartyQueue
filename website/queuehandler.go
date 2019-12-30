@@ -98,7 +98,7 @@ func spotifyGetCurrent() CurrentlyPlaying {
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&currentlyPlaying)
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 
 	//fmt.Println(currentlyPlaying)
@@ -127,7 +127,7 @@ func resolveSpotifyIds(id string) SongLookup {
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&resolvedSong)
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 
 	//fmt.Println(currentlyPlaying)
@@ -187,7 +187,7 @@ func updateSpotifyToken(token Token) {
 	decoder := json.NewDecoder(resp.Body)
 	err := decoder.Decode(&spot)
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 
 	token.Token = spot.AccessToken
@@ -216,7 +216,7 @@ func spotifySearch(search string) []ConvertedResults {
 	decoder := json.NewDecoder(resp.Body)
 	err = decoder.Decode(&results)
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 
 	return convertResults(results)
